@@ -9,15 +9,11 @@ from logic import Logic
 inputArgumentReader = InputArgumentReader(Logic())
 X_train, X_test, y_train, y_test = DataPreparer.get_prepared_data(inputArgumentReader.arguments)
 
-
-
-
-
-
-asd1 = 'degree'
-asd2 = 3
-
-model = SVR(**{asd1:asd2}) # 1 az 1be mehet bele a model_arguments
+if 'model_arguments' in inputArgumentReader.arguments.keys():
+    model = SVR(**inputArgumentReader.arguments['model_arguments'])
+else:
+    model = SVR()
+    
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 print()
