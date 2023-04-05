@@ -1,8 +1,7 @@
 import argparse
 from logic import AbstractLogic
 
-class InputArguments:
-
+class InputArgumentReader:
     def __init__(self, logic : AbstractLogic):
         self.__logic = logic
         self.arguments = self._get_input_arguments()

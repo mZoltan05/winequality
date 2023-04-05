@@ -2,27 +2,25 @@ import pandas as pd
 from sklearn.svm import SVR
 from sklearn.model_selection import train_test_split
 
-from argument_handler import InputArguments
+from argument_handler import InputArgumentReader
+from model_data_preparer import DataPreparer
 from logic import Logic
 
 
-inputArguments = InputArguments(Logic())
-print(inputArguments.arguments)
+inputArgumentReader = InputArgumentReader(Logic())
+X_train, X_test, y_train, y_test = DataPreparer.get_prepared_data(inputArgumentReader.arguments)
 
 
-df = pd.read_csv('winequality.csv')
-X = df.drop(columns='quality')
-y = df['quality']
 
-test_data_proportion = inputArguments.arguments['test_data_proportion'] if 0 < inputArguments.arguments['test_data_proportion'] < 1 else 0.2 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size= test_data_proportion , random_state= 1)
+
+
 
 asd1 = 'degree'
 asd2 = 3
 
 model = SVR(**{asd1:asd2}) # 1 az 1be mehet bele a model_arguments
-model.fit(X, y)
-predictions = model.predict(X)
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
 print()
 print(predictions)
 print()
