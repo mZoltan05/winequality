@@ -20,8 +20,16 @@ class InputArgumentReader:
             if value != None:
                 arguments[key] = value
 
-        if 'model_arguments' in arguments.keys():
+        return self.__format_arguments(arguments)
+    
+    def __format_arguments(self, input_arguments : dict):
+        formatted_arguments = input_arguments
+        if 'model_arguments' in input_arguments.keys():
             #['kernel', 'tbf', 'degree', '3', 'shrinking', 'True'] -> {'kernel': 'tbf', 'degree': 3,'shrinking': True}           
-            arguments['model_arguments'] = self.__logic.convert_list_to_dict( arguments['model_arguments'] )
+            formatted_arguments['model_arguments'] = self.__logic.convert_list_to_dict( input_arguments['model_arguments'] )
 
-        return arguments
+        if 'features' in input_arguments.keys():
+            #['citric_acid', 'residual_sugar', 'chlorides'] -> ['citric acid', 'residual sugar', 'chlorides']
+            formatted_arguments['features'] = list(map(lambda s: s.replace('_',' '), formatted_arguments['features']))
+
+        return formatted_arguments
