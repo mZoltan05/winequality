@@ -1,11 +1,13 @@
 import pandas as pd 
 from sklearn.svm import SVR
 from argument_handler import InputArguments
+from logic import Logic
 
 
-inputArguments = InputArguments()
-
+inputArguments = InputArguments(Logic())
 print(inputArguments.arguments)
+
+
 
 df = pd.read_csv('winequality.csv')
 X = df.drop(columns='quality')

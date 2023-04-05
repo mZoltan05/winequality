@@ -1,10 +1,11 @@
 import argparse
+from logic import AbstractLogic
 
 class InputArguments:
 
-    def __init__(self):
+    def __init__(self, logic : AbstractLogic):
+        self.__logic = logic
         self.arguments = self._get_input_arguments()
-        
 
     def _get_input_arguments(self):
         parser = argparse.ArgumentParser()
@@ -21,12 +22,7 @@ class InputArguments:
                 arguments[key] = value
 
         if 'model_arguments' in arguments.keys():
-              
-            model_arguments_list = arguments['model_arguments']                                                                        #['kernel', 'tbf', 'degree', '3']
-            model_arguments_dict = {model_arguments_list[i]: model_arguments_list[i+1] for i in range(0, len(model_arguments_list), 2)}     #{'kernel': 'tbf', 'degree': '3'}
-            arguments['model_arguments'] = model_arguments_dict
+            #['kernel', 'tbf', 'degree', '3'] -> {'kernel': 'tbf', 'degree': '3'}           
+            arguments['model_arguments'] = self.__logic.convert_list_to_dict( arguments['model_arguments'] )
 
         return arguments
-    
-    def __convert_list_to_dict():
-        pass
