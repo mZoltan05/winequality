@@ -1,6 +1,5 @@
 import pandas as pd 
 from sklearn.svm import SVR
-from sklearn.model_selection import train_test_split
 
 from argument_handler import InputArgumentReader
 from model_data_preparer import DataPreparer
@@ -22,5 +21,5 @@ model = SVR(**{asd1:asd2}) # 1 az 1be mehet bele a model_arguments
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 print()
-print(predictions)
+#print(predictions)
 print()

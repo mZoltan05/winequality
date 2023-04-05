@@ -7,7 +7,7 @@ class AbstractLogic(ABC):
         pass
     
     @abstractmethod
-    def parse_string_to_type(self,str_to_be_parsed : str):
+    def parse_string_to_type(self, str_to_be_parsed : str):
         pass
 
 class Logic(AbstractLogic):
