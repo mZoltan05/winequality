@@ -18,3 +18,4 @@ else:
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
+PredictionDisplay.save_result(predictions, y_test, inputArgumentReader.arguments['result_location'])
