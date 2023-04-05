@@ -14,8 +14,7 @@ class Logic(AbstractLogic):
     def convert_list_to_dict(self, list_to_be_converted : list):
         new_dict = {list_to_be_converted[i]: list_to_be_converted[i+1] for i in range(0, len(list_to_be_converted), 2)}
         for key in new_dict.keys():
-            new_dict[key] = self.parse_string_to_type(new_dict[key]) 
-            
+            new_dict[key] = self.parse_string_to_type(new_dict[key])  
         return new_dict
 
     def parse_string_to_type(self, value : str):

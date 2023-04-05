@@ -22,7 +22,7 @@ class InputArguments:
                 arguments[key] = value
 
         if 'model_arguments' in arguments.keys():
-            #['kernel', 'tbf', 'degree', '3'] -> {'kernel': 'tbf', 'degree': '3'}           
+            #['kernel', 'tbf', 'degree', '3', 'shrinking', 'True'] -> {'kernel': 'tbf', 'degree': 3,'shrinking': True}           
             arguments['model_arguments'] = self.__logic.convert_list_to_dict( arguments['model_arguments'] )
 
         return arguments
