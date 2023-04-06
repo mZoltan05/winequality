@@ -21,4 +21,4 @@ else:
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
-PredictionDisplay.save_result(predictions, y_test, dataPreparer.result_location)
+PredictionDisplay.plot_result(predictions, y_test, dataPreparer.save_result)
