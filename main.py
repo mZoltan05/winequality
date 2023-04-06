@@ -8,14 +8,17 @@ from logic import Logic
 
 
 inputArgumentReader = InputArgumentReader(Logic())
-X_train, X_test, y_train, y_test = DataPreparer.get_prepared_data(inputArgumentReader.arguments)
+dataPreparer = DataPreparer(inputArgumentReader.arguments)
+
+X_train, X_test, y_train, y_test = dataPreparer.prepared_data
 
 if 'model_arguments' in inputArgumentReader.arguments.keys():
     model = SVR(**inputArgumentReader.arguments['model_arguments'])
 else:
     model = SVR()
 
+
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 
-PredictionDisplay.save_result(predictions, y_test, inputArgumentReader.arguments['result_location'])
+PredictionDisplay.save_result(predictions, y_test, dataPreparer.result_location)

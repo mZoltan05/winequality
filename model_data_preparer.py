@@ -2,21 +2,28 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 
 class DataPreparer:
-    @staticmethod
-    def get_prepared_data(input_arguments: dict):
-        
-        if 'datasource_location' in input_arguments.keys():
-            df = pd.read_csv(input_arguments['datasource_location'] + 'winequality.csv')
+    def __init__(self, input_arguments: dict):
+        self._input_arguments = input_arguments
+        self.prepared_data = self.__get_prepared_data()
+        self.result_location = self.__get_result_location()
+
+    def __get_prepared_data(self):
+        if 'datasource_location' in self._input_arguments.keys():
+            df = pd.read_csv(self._input_arguments['datasource_location'] + 'winequality.csv')
         else:
             df = pd.read_csv('winequality.csv')
         
-        if 'features' in input_arguments.keys():
-            X = df[input_arguments['features']]
+        if 'features' in self._input_arguments.keys():
+            X = df[self._input_arguments['features']]
         else:
             X = df.drop(columns='quality')
-    
+            
         y = df['quality']
-        test_data_proportion = input_arguments['test_data_proportion'] if 0 < input_arguments['test_data_proportion'] < 1 else 0.2 
-
-        return train_test_split(X, y, test_size= test_data_proportion , random_state= 1)
+        if 'test_data_proportion' in self._input_arguments.keys():
+            return train_test_split(X, y, test_size= self._input_arguments['test_data_proportion'] , random_state= 1)
+        return train_test_split(X, y, test_size= 0.2 , random_state= 1) 
         
+    def __get_result_location(self):
+        if 'result_location' in self._input_arguments.keys():
+            return self._input_arguments['result_location']
+        return ''
