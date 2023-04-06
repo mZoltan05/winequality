@@ -26,4 +26,3 @@ class Logic(AbstractLogic):
             return bool(value)
         else:
             return value
-    

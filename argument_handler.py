@@ -20,7 +20,6 @@ class InputArgumentReader:
         for key,value in parser.parse_args()._get_kwargs():
             if value != None:
                 arguments[key] = value
-
         return self.__format_arguments(arguments)
     
     def __format_arguments(self, input_arguments : dict):
@@ -32,5 +31,4 @@ class InputArgumentReader:
         if 'features' in input_arguments.keys():
             #['citric_acid', 'residual_sugar', 'chlorides'] -> ['citric acid', 'residual sugar', 'chlorides']
             formatted_arguments['features'] = list(map(lambda s: s.replace('_',' '), formatted_arguments['features']))
-
         return formatted_arguments

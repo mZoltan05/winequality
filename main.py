@@ -17,7 +17,6 @@ if 'model_arguments' in inputArgumentReader.arguments.keys():
 else:
     model = SVR()
 
-
 model.fit(X_train, y_train)
 predictions = model.predict(X_test)
 

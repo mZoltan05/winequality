@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 import pandas as pd
 
-
 class PredictionDisplay:
     @staticmethod
     def plot_result(predicted_data: pd.DataFrame, actual_data: pd.DataFrame, save_result: dict ):
