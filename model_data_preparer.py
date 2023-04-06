@@ -17,7 +17,6 @@ class DataPreparer:
             X = df[self._input_arguments['features']]
         else:
             X = df.drop(columns='quality')
-
         y = df['quality']
         if 'test_data_proportion' in self._input_arguments.keys():
             return train_test_split(X, y, test_size= self._input_arguments['test_data_proportion'] , random_state= 1)
